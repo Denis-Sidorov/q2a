@@ -3572,3 +3572,17 @@ input[type="submit"], button {
 .icon-reply:before { content: '\e823'; }
 .icon-power:before { content: '\e824'; }
 .icon-link:before { content: '\e825'; }
+
+html, body {
+	height: 100%;
+}
+body {
+	display: flex;
+	flex-direction: column;
+}
+.qa-body-wrapper {
+	flex: 1 0 auto;
+}
+.qam-footer-box {
+	flex-shrink: 0;
+}
