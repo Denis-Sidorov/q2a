@@ -14,6 +14,16 @@
 
 [Question2Answer][Q2A] (Q2A) is a popular free open source Q&A platform for PHP/MySQL, used by over [22,000 sites in 40 languages][3].
 
+## Build features
+
+Installed plugins:
+
+- LDAP
+- Discord notifications
+
+Updated plugins:
+
+- Editor (with code highlight)
 
 ## Key features
 
