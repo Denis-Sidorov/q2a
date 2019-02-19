@@ -4,22 +4,22 @@ services:
   php:
     build:
       context: ./docker/php
-    image: ${REGISTRY_URL}marm-app-q2a
-    container_name: marm-app-q2a
+    image: ${REGISTRY_URL}app-q2a
+    container_name: app-q2a
     environment:
       - PHP_IDE_CONFIG=serverName=localhost
     volumes:
       - .:/var/www/app
     networks:
-      - marm-q2a
+      - q2a
     depends_on:
       - db
     restart: always
 
   nginx:
     build: ./docker/nginx
-    image: ${REGISTRY_URL}marm-server-q2a
-    container_name: marm-server-q2a
+    image: ${REGISTRY_URL}server-q2a
+    container_name: server-q2a
     volumes:
       - .:/var/www/app
     ports:
@@ -27,11 +27,7 @@ services:
     depends_on:
       - php
     networks:
-      - marm-q2a
-      - marm-router
-    labels:
-      - "traefik.frontend.rule=Host:dev.q2a.blackhole.marm.altarix.org"
-      - "traefik.docker.network=marm-router"
+      - q2a
     restart: always
 
   db:
@@ -44,19 +40,17 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - marm-q2a
+      - q2a
     volumes:
       - q2a-db:/var/lib/mysql
     restart: always
 
 networks:
-  marm-router:
-    external: true
-  marm-q2a:
+  q2a:
     ipam:
       config:
         - subnet: "172.40.0.0/24"
-    name: marm-q2a
+    name: q2a
 
 volumes:
   q2a-db:
